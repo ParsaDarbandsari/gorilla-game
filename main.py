@@ -20,4 +20,5 @@ while not done:
 			done = True
 
 
+# And finally quiting
 pygame.quit()
