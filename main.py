@@ -1,6 +1,8 @@
+from random import randint
+from utils import *
 import pygame
 
-# Initialize pygame
+# Initializing pygame
 pygame.init()
 
 # Setting up the screen
@@ -18,6 +20,12 @@ while not done:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			done = True
+	
+	screen.fill((0x00, 0x8d, 0xff))
+	generate_building(screen, 0, randint((SCREEN_HEIGHT // 2) - 80, (SCREEN_HEIGHT // 2) + 80), SCREEN_WIDTH // 7, SCREEN_HEIGHT)
+	pygame.display.update()
+	
+	
 
 
 # And finally quiting
