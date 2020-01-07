@@ -1,4 +1,6 @@
 from random import randint
+from rect import Rect
+from apartment import Apartment
 from utils import *
 import pygame
 import time
@@ -20,6 +22,22 @@ TITLE = 'Gorilla Game'
 pygame.display.set_caption(TITLE)
 screen = pygame.display.set_mode(SCREEN_RESOLUTION, pygame.DOUBLEBUF, 32)
 
+apartments = []
+
+for i in range(10):
+	h = randint(100, 300)
+	w = randint(90, 120)
+	t = SCREEN_HEIGHT - h
+	if i > 0:
+		l += apartments[i-1].rect.width
+	else:
+		l = 0
+	a = Rect(l, t, w, h)
+	c = (randint(0, 255), randint(0, 255), randint(0, 255))
+	ap = Apartment(a, c)
+	apartments.append(ap)
+
+
 # The Mainloop
 done = False
 while not done:
@@ -28,7 +46,8 @@ while not done:
 		if event.type == pygame.QUIT:
 			done = True
 	
-	generate_building(screen, 10, 10, 120, 200, (255, 0, 0))
+	for ap in apartments:
+		generate_building(screen, ap.rect, ap.color)
 	pygame.display.update()
 	time.sleep(1/60)
 

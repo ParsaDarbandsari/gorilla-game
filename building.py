@@ -1,33 +1,30 @@
 from game_object import GameObject
 from random import randint
+from rect import Rect
 from pygame import draw
 
 class Building(GameObject):
-	def __init__(self, screen, top, left, width, height, building_color):
-		self.top = top
-		self.left = left
-		self.width = width
-		self.height = height
+	def __init__(self, screen, rect: Rect, building_color):
+		self.rect = rect
 		self.building_color = building_color
-		super(Building, self).__init__('Building', screen, (self.top, self.left))
+		super(Building, self).__init__('Building', screen, self.rect.location)
 	
 	def draw(self):
 		# Generate the body of the building
-		rect = (self.top, self.left, self.width, self.height)
-		draw.rect(self.screen, self.building_color, rect)
+		draw.rect(self.screen, self.building_color, self.rect.tuple)
 		
 		# Add in the windows
 		window_width = 8
 		window_height = 13
 		x_margin = 5
 		y_margin = 5
-		x_window_count = self.width // (window_width + x_margin)
-		y_window_count = self.height // (window_height + y_margin)
-		x_gap = ((self.width - x_margin) / x_window_count) - window_width
-		y_gap = ((self.height - y_margin) / y_window_count) - window_height
+		x_window_count = self.rect.width // (window_width + x_margin)
+		y_window_count = self.rect.height // (window_height + y_margin)
+		x_gap = ((self.rect.width - x_margin) / x_window_count) - window_width
+		y_gap = ((self.rect.height - y_margin) / y_window_count) - window_height
 		
-		point_x = self.left + x_gap
-		point_y = self.top + y_gap
+		point_x = self.rect.left + x_gap
+		point_y = self.rect.top + y_gap
 		
 		for y in range(y_window_count):
 			for x in range(x_window_count):

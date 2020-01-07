@@ -1,6 +1,6 @@
 from building import Building
 
 
-def generate_building(screen, top, left, width, height, color):
-	building = Building(screen, top, left, width, height, color)
+def generate_building(screen, rect, color):
+	building = Building(screen, rect, color)
 	building.draw()
