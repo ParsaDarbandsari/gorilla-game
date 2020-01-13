@@ -29,4 +29,4 @@ class Building(GameObject):
 		for y in range(y_window_count):
 			for x in range(x_window_count):
 				window_rect = (int(point_x + (x_gap + window_width) * x), int(point_y + (y_gap + window_height) * y), window_width, window_height)
-				draw.rect(self.screen, (0, 255, 255), window_rect)
+				draw.rect(self.screen, (0xf9, 0xa6, 0x02), window_rect)
