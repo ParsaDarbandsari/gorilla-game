@@ -3,6 +3,3 @@ class GameObject(object):
 		self.name = object_name
 		self.screen = displaying_screen
 		self.pos = position
-	
-	def draw(self):
-		pass

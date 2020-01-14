@@ -1,15 +1,13 @@
-from random import randint
-from rect import Rect
 from apartment import Apartment
+from random import randint
+from gorilla import Gorilla
+from rect import Rect
 from utils import *
 import pygame
 import time
-import os
 
 # Initializing pygame
 pygame.init()
-
-
 
 # Setting up the screen
 SCREEN_WIDTH = 1280
@@ -30,10 +28,13 @@ gorilla_throwing = pygame.image.load("sprites\\gorilla-throwing.png").convert_al
 APARTMENT_MIN_WIDTH = 90
 APARTMENT_MAX_WIDTH = 120
 APARTMENT_MIN_HEIGHT = 200
-APARTMENT_MAX_HEIGHT = 350
+APARTMENT_MAX_HEIGHT = 400
 apartments = []
+apartments_width = []
 
-for i in range(SCREEN_WIDTH // APARTMENT_MIN_WIDTH):
+l = 0
+i = 0
+while sum(apartments_width) < SCREEN_WIDTH:
 	w = randint(APARTMENT_MIN_WIDTH, APARTMENT_MAX_WIDTH)
 	h = randint(APARTMENT_MIN_HEIGHT, APARTMENT_MAX_HEIGHT)
 	t = SCREEN_HEIGHT - h
@@ -45,7 +46,12 @@ for i in range(SCREEN_WIDTH // APARTMENT_MIN_WIDTH):
 	color = (randint(0, 255), randint(0, 255), randint(0, 255))
 	ap = Apartment(apartment_rect, color)
 	apartments.append(ap)
+	apartments_width.append(ap.rect.width)
+	i += 1
 
+# Summon the gorillas
+gorilla_1 = Gorilla(screen, apartments[1].rect.left + apartments[1].rect.width // 2 - 60/2, apartments[1].rect.top - 60)
+gorilla_2 = Gorilla(screen, apartments[-2].rect.left + apartments[-2].rect.width // 2 - 60/2, apartments[-2].rect.top - 60)
 
 # The Mainloop
 done = False
@@ -59,11 +65,12 @@ while not done:
 			if event.key == pygame.K_ESCAPE:
 				done = True
 	
+	gorilla_1.idle()
+	gorilla_2.idle()
 	
-	screen.blit(gorilla_idle, (apartments[1].rect.left + apartments[1].rect.width // 2 - 60/2, apartments[1].rect.top - 60))
-	screen.blit(gorilla_idle, (apartments[-4].rect.left + apartments[-4].rect.width // 2 - 60/2, apartments[-4].rect.top - 60))
 	for ap in apartments:
 		generate_building(screen, ap.rect, ap.color)
+	
 	pygame.display.update()
 	time.sleep(1/60)
 
