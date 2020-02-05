@@ -1,13 +1,12 @@
-from game_object import GameObject
-from random import randint
-from rect import Rect
+from classes.game_object import GameObject
+from classes.rect import Rect
 from pygame import draw
 
 class Building(GameObject):
 	def __init__(self, screen, rect: Rect, building_color):
 		self.rect = rect
 		self.building_color = building_color
-		super(Building, self).__init__('Building', screen, self.rect.location)
+		super(Building, self).__init__(screen, self.rect.location)
 	
 	def draw(self):
 		# Generate the body of the building

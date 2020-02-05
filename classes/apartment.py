@@ -1,4 +1,4 @@
-from rect import Rect
+from classes.rect import Rect
 
 class Apartment(object):
 	def __init__(self, rect: Rect, color):

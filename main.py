@@ -1,7 +1,7 @@
-from apartment import Apartment
+from classes.apartment import Apartment
 from random import randint
-from gorilla import Gorilla
-from rect import Rect
+from classes.gorilla import Gorilla
+from classes.rect import Rect
 from utils import *
 import pygame
 import time

@@ -1,5 +1,5 @@
 import math
-from building import Building
+from classes.building import Building
 
 
 def generate_building(screen, rect, color):

@@ -1,4 +1,4 @@
-from game_object import GameObject
+from classes.game_object import GameObject
 import pygame
 import time
 
@@ -8,7 +8,7 @@ class Gorilla(GameObject):
 		self.left = left
 		self.screen = screen
 		self.pos = (left, top)
-		super(Gorilla, self).__init__('gorilla', screen, self.pos)
+		super(Gorilla, self).__init__(screen, self.pos)
 	
 	def idle(self):
 		# Get image from the source
